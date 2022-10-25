@@ -1,7 +1,9 @@
-[gd_scene load_steps=30 format=3 uid="uid://c6548x0xpwqos"]
+[gd_scene load_steps=51 format=3 uid="uid://c6548x0xpwqos"]
 
 [ext_resource type="Script" path="res://Player/PlayerController.gd" id="1_2clth"]
 [ext_resource type="Script" path="res://ShapePolygon2D.gd" id="1_ql0tc"]
+[ext_resource type="Texture2D" uid="uid://crn2j8tmslj8m" path="res://DownloadedAssets/craftpix-net-594347-11-free-pixel-art-explosion-sprites/PNG/Explosion/Explosion5.png" id="3_d83jc"]
+[ext_resource type="Script" path="res://AnimStuff/MissileAnimStateMachine.gd" id="4_470gi"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hoiqi"]
 size = Vector2(10, 8)
@@ -21,10 +23,53 @@ size = Vector2(3, 7)
 [sub_resource type="CircleShape2D" id="CircleShape2D_b5t5n"]
 radius = 3.0
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7girx"]
+size = Vector2(7.5, 10)
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_udwr5"]
 radius = 15.0
 
 [sub_resource type="AnimationNodeAdd2" id="AnimationNodeAdd2_n7s02"]
+
+[sub_resource type="AnimationNodeAdd2" id="AnimationNodeAdd2_ebtpy"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7m5to"]
+animation = &"FireRightMissile"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ouccd"]
+animation = &"FireRightMissilePrep"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_5wuv3"]
+animation = &"FireRightMissileRecover"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_8axpn"]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_r6yfg"]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_o3ugb"]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_cb766"]
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_kf7tw"]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_4erh4"]
+states/FireRightMissile/node = SubResource("AnimationNodeAnimation_7m5to")
+states/FireRightMissile/position = Vector2(649, 84)
+states/FireRightMissilePrep/node = SubResource("AnimationNodeAnimation_ouccd")
+states/FireRightMissilePrep/position = Vector2(533, 23)
+states/FireRightMissileRecover/node = SubResource("AnimationNodeAnimation_5wuv3")
+states/FireRightMissileRecover/position = Vector2(533, 159)
+states/Start/position = Vector2(167, 84)
+transitions = ["FireRightMissile", "FireRightMissileRecover", SubResource("AnimationNodeStateMachineTransition_8axpn"), "FireRightMissileRecover", "End", SubResource("AnimationNodeStateMachineTransition_r6yfg"), "FireRightMissilePrep", "FireRightMissile", SubResource("AnimationNodeStateMachineTransition_o3ugb"), "Start", "FireRightMissilePrep", SubResource("AnimationNodeStateMachineTransition_cb766"), "FireRightMissileRecover", "FireRightMissilePrep", SubResource("AnimationNodeStateMachineTransition_kf7tw")]
+script = ExtResource("4_470gi")
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_vjqrk"]
 animation = &"Punch"
@@ -41,12 +86,21 @@ switch_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ar6s5"]
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_hj880"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_gy1s3"]
+switch_mode = 2
+auto_advance = true
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_hgsk8"]
+states/FireMissiles/node = SubResource("AnimationNodeStateMachine_4erh4")
+states/FireMissiles/position = Vector2(678, 158)
 states/Punch/node = SubResource("AnimationNodeAnimation_vjqrk")
 states/Punch/position = Vector2(621, 66)
 states/RESET/node = SubResource("AnimationNodeAnimation_1naaq")
-states/RESET/position = Vector2(406, 100)
-transitions = ["Punch", "RESET", SubResource("AnimationNodeStateMachineTransition_676vi"), "Start", "RESET", SubResource("AnimationNodeStateMachineTransition_gmemh"), "RESET", "Punch", SubResource("AnimationNodeStateMachineTransition_ar6s5")]
+states/RESET/position = Vector2(404, 100)
+transitions = ["Punch", "RESET", SubResource("AnimationNodeStateMachineTransition_676vi"), "Start", "RESET", SubResource("AnimationNodeStateMachineTransition_gmemh"), "RESET", "Punch", SubResource("AnimationNodeStateMachineTransition_ar6s5"), "RESET", "FireMissiles", SubResource("AnimationNodeStateMachineTransition_hj880"), "FireMissiles", "RESET", SubResource("AnimationNodeStateMachineTransition_gy1s3")]
+graph_offset = Vector2(0, 40.3351)
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_xk14o"]
 animation = &"RESET"
@@ -63,25 +117,81 @@ auto_advance = true
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_s2q8y"]
 states/RESET/node = SubResource("AnimationNodeAnimation_xk14o")
-states/RESET/position = Vector2(389, 106)
+states/RESET/position = Vector2(397, 100)
 states/Walk/node = SubResource("AnimationNodeAnimation_rh311")
-states/Walk/position = Vector2(550, 106)
+states/Walk/position = Vector2(630, 100)
 transitions = ["RESET", "Walk", SubResource("AnimationNodeStateMachineTransition_caift"), "Walk", "RESET", SubResource("AnimationNodeStateMachineTransition_i5562"), "Start", "RESET", SubResource("AnimationNodeStateMachineTransition_ffdaa")]
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_w0mkw"]
+animation = &"RESET"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2i5pj"]
+animation = &"Walk"
+
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_lnxq1"]
-graph_offset = Vector2(-514.373, 34.0111)
-nodes/Add2/node = SubResource("AnimationNodeAdd2_n7s02")
-nodes/Add2/position = Vector2(300, 120)
+graph_offset = Vector2(-627.499, 54.8551)
+nodes/AddAttack/node = SubResource("AnimationNodeAdd2_n7s02")
+nodes/AddAttack/position = Vector2(300, 120)
+nodes/AddWalk/node = SubResource("AnimationNodeAdd2_ebtpy")
+nodes/AddWalk/position = Vector2(100, 40)
 nodes/Attack/node = SubResource("AnimationNodeStateMachine_hgsk8")
 nodes/Attack/position = Vector2(100, 240)
 nodes/Move/node = SubResource("AnimationNodeStateMachine_s2q8y")
-nodes/Move/position = Vector2(100, 100)
+nodes/Move/position = Vector2(-320, 80)
+nodes/RESET/node = SubResource("AnimationNodeAnimation_w0mkw")
+nodes/RESET/position = Vector2(-120, -20)
+nodes/Walk/node = SubResource("AnimationNodeAnimation_2i5pj")
+nodes/Walk/position = Vector2(-140, 140)
 nodes/output/position = Vector2(500, 160)
-node_connections = [&"output", 0, &"Add2", &"Add2", 0, &"Move", &"Add2", 1, &"Attack"]
+node_connections = [&"output", 0, &"AddAttack", &"AddAttack", 0, &"AddWalk", &"AddAttack", 1, &"Attack", &"AddWalk", 0, &"RESET", &"AddWalk", 1, &"Walk"]
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_wgwx7"]
 
+[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_83n7y"]
+
 [sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_floqk"]
+
+[sub_resource type="Animation" id="Animation_ohj6l"]
+resource_name = "FireMissile"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CharacterBody/Torso/RightLauncher/LaunchEffect:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CharacterBody/Torso/RightLauncher/LaunchEffect:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PlayerController")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"fire_missile"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_el12r"]
 resource_name = "Punch"
@@ -137,6 +247,42 @@ tracks/2/keys = {
 "update": 0,
 "values": [Vector2(2.5, 14)]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CharacterBody/Torso/RightLauncher/LaunchEffect:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CharacterBody/Torso/RightLauncher/LaunchEffect:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("CharacterBody/Torso/RightLauncher:color")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.333333, 0.0509804, 0.521569, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_lsa3a"]
 resource_name = "Walk"
@@ -167,8 +313,44 @@ tracks/1/keys = {
 "values": [Vector2(0, -12), Vector2(0, -12), Vector2(4, -12), Vector2(0, -12)]
 }
 
+[sub_resource type="Animation" id="Animation_fttdl"]
+resource_name = "Empty"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CharacterBody/Torso/RightLauncher:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0.333333, 0.0509804, 0.521569, 1), Color(0.129412, 0.0196078, 0.2, 1), Color(0.333333, 0.0509804, 0.521569, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_85oqp"]
+resource_name = "FireRightMissilePrep"
+length = 0.1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CharacterBody/Torso/RightLauncher:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0.333333, 0.0509804, 0.521569, 1), Color(0.486275, 0.0745098, 0.760784, 1), Color(0.333333, 0.0509804, 0.521569, 1)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_iefib"]
 _data = {
+"FireRightMissile": SubResource("Animation_ohj6l"),
+"FireRightMissilePrep": SubResource("Animation_85oqp"),
+"FireRightMissileRecover": SubResource("Animation_fttdl"),
 "Punch": SubResource("Animation_el12r"),
 "RESET": SubResource("Animation_xq16i"),
 "Walk": SubResource("Animation_lsa3a")
@@ -184,6 +366,7 @@ current = true
 [node name="PlayerController" type="Node" parent="Player"]
 script = ExtResource("1_2clth")
 k_walk_while_turning_angle_deg = 23
+m_add_amount = 0.1
 
 [node name="CharacterBody" type="CharacterBody2D" parent="Player"]
 
@@ -258,14 +441,45 @@ polygon = PackedVector2Array(3, 0, 2.77164, 1.14805, 2.12132, 2.12132, 1.14805, 
 script = ExtResource("1_ql0tc")
 shape = SubResource("CircleShape2D_b5t5n")
 
+[node name="RightLauncher" type="Polygon2D" parent="Player/CharacterBody/Torso"]
+position = Vector2(-3, 7)
+color = Color(0.333333, 0.0509804, 0.521569, 1)
+polygon = PackedVector2Array(-3.75, -5, 3.75, -5, 3.75, 5, -3.75, 5)
+script = ExtResource("1_ql0tc")
+shape = SubResource("RectangleShape2D_7girx")
+
+[node name="LaunchEffect" type="Sprite2D" parent="Player/CharacterBody/Torso/RightLauncher"]
+visible = false
+position = Vector2(-7, 3)
+rotation = 1.5708
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("3_d83jc")
+flip_h = true
+
+[node name="LeftLauncher" type="Polygon2D" parent="Player/CharacterBody/Torso"]
+position = Vector2(-3, -7)
+color = Color(0.333333, 0.0509804, 0.521569, 1)
+polygon = PackedVector2Array(-3.75, -5, 3.75, -5, 3.75, 5, -3.75, 5)
+script = ExtResource("1_ql0tc")
+shape = SubResource("RectangleShape2D_7girx")
+
+[node name="LaunchEffect" type="Sprite2D" parent="Player/CharacterBody/Torso/LeftLauncher"]
+visible = false
+position = Vector2(-7, -3)
+rotation = 1.5708
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("3_d83jc")
+
 [node name="MainBodyCollisionShape" type="CollisionShape2D" parent="Player/CharacterBody"]
 shape = SubResource("CircleShape2D_udwr5")
 
 [node name="AnimationTree" type="AnimationTree" parent="Player"]
 tree_root = SubResource("AnimationNodeBlendTree_lnxq1")
 anim_player = NodePath("../AnimationPlayer")
-parameters/Add2/add_amount = 1.0
+parameters/AddAttack/add_amount = 1.0
+parameters/AddWalk/add_amount = 1.0
 parameters/Attack/playback = SubResource("AnimationNodeStateMachinePlayback_wgwx7")
+parameters/Attack/FireMissiles/playback = SubResource("AnimationNodeStateMachinePlayback_83n7y")
 parameters/Move/playback = SubResource("AnimationNodeStateMachinePlayback_floqk")
 
 [node name="DINodeRegistration" type="DINodeRegistration" parent="Player/AnimationTree"]
