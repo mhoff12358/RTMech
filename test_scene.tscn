@@ -1,10 +1,13 @@
-[gd_scene load_steps=45 format=3 uid="uid://c6548x0xpwqos"]
+[gd_scene load_steps=54 format=3 uid="uid://c6548x0xpwqos"]
 
 [ext_resource type="Script" path="res://Player/PlayerController.gd" id="1_2clth"]
 [ext_resource type="Script" path="res://ShapePolygon2D.gd" id="1_ql0tc"]
 [ext_resource type="Texture2D" uid="uid://crn2j8tmslj8m" path="res://DownloadedAssets/craftpix-net-594347-11-free-pixel-art-explosion-sprites/PNG/Explosion/Explosion5.png" id="3_d83jc"]
 [ext_resource type="Script" path="res://AnimStuff/MissileAnimStateMachine.gd" id="4_470gi"]
 [ext_resource type="AnimationLibrary" uid="uid://cpr5ld00lsitg" path="res://AnimStuff/player_animations.tres" id="5_yu1bf"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_udwr5"]
+radius = 15.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hoiqi"]
 size = Vector2(10, 8)
@@ -27,12 +30,18 @@ radius = 3.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7girx"]
 size = Vector2(7.5, 10)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_udwr5"]
-radius = 15.0
-
 [sub_resource type="AnimationNodeAdd2" id="AnimationNodeAdd2_n7s02"]
 
 [sub_resource type="AnimationNodeAdd2" id="AnimationNodeAdd2_ebtpy"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_aochm"]
+animation = &"FireLeftMissile"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_jrc64"]
+animation = &"FireLeftMissilePrep"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_d8vj8"]
+animation = &"FireLeftMissileRecover"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7m5to"]
 animation = &"FireRightMissile"
@@ -59,17 +68,44 @@ auto_advance = true
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_kf7tw"]
 switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_86y28"]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_7ayy6"]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_0iuwk"]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2pckf"]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_vvik2"]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_th0wv"]
+switch_mode = 2
 auto_advance = true
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_4erh4"]
+states/End/position = Vector2(415, 311)
+states/FireLeftMissile/node = SubResource("AnimationNodeAnimation_aochm")
+states/FireLeftMissile/position = Vector2(132, 92)
+states/FireLeftMissilePrep/node = SubResource("AnimationNodeAnimation_jrc64")
+states/FireLeftMissilePrep/position = Vector2(292, 8)
+states/FireLeftMissileRecover/node = SubResource("AnimationNodeAnimation_d8vj8")
+states/FireLeftMissileRecover/position = Vector2(292, 159)
 states/FireRightMissile/node = SubResource("AnimationNodeAnimation_7m5to")
 states/FireRightMissile/position = Vector2(649, 84)
 states/FireRightMissilePrep/node = SubResource("AnimationNodeAnimation_ouccd")
 states/FireRightMissilePrep/position = Vector2(533, 23)
 states/FireRightMissileRecover/node = SubResource("AnimationNodeAnimation_5wuv3")
 states/FireRightMissileRecover/position = Vector2(533, 159)
-states/Start/position = Vector2(69, 23)
-transitions = ["FireRightMissile", "FireRightMissileRecover", SubResource("AnimationNodeStateMachineTransition_8axpn"), "FireRightMissileRecover", "End", SubResource("AnimationNodeStateMachineTransition_r6yfg"), "FireRightMissilePrep", "FireRightMissile", SubResource("AnimationNodeStateMachineTransition_o3ugb"), "Start", "FireRightMissilePrep", SubResource("AnimationNodeStateMachineTransition_cb766"), "FireRightMissileRecover", "FireRightMissilePrep", SubResource("AnimationNodeStateMachineTransition_kf7tw")]
+states/Start/position = Vector2(403, -50)
+transitions = ["FireRightMissile", "FireRightMissileRecover", SubResource("AnimationNodeStateMachineTransition_8axpn"), "FireRightMissileRecover", "End", SubResource("AnimationNodeStateMachineTransition_r6yfg"), "FireRightMissilePrep", "FireRightMissile", SubResource("AnimationNodeStateMachineTransition_o3ugb"), "Start", "FireRightMissilePrep", SubResource("AnimationNodeStateMachineTransition_cb766"), "FireRightMissileRecover", "FireRightMissilePrep", SubResource("AnimationNodeStateMachineTransition_kf7tw"), "FireLeftMissilePrep", "FireLeftMissile", SubResource("AnimationNodeStateMachineTransition_86y28"), "FireLeftMissile", "FireLeftMissileRecover", SubResource("AnimationNodeStateMachineTransition_7ayy6"), "FireLeftMissileRecover", "FireLeftMissilePrep", SubResource("AnimationNodeStateMachineTransition_0iuwk"), "FireLeftMissileRecover", "FireRightMissilePrep", SubResource("AnimationNodeStateMachineTransition_2pckf"), "FireRightMissileRecover", "FireLeftMissilePrep", SubResource("AnimationNodeStateMachineTransition_vvik2"), "FireLeftMissileRecover", "End", SubResource("AnimationNodeStateMachineTransition_th0wv")]
+graph_offset = Vector2(0, -107.198)
 script = ExtResource("4_470gi")
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_vjqrk"]
@@ -174,6 +210,9 @@ m_add_amount = 0.1
 
 [node name="DINodeRegistration" type="DINodeRegistration" parent="GameContent/Player/CharacterBody"]
 
+[node name="MainBodyCollisionShape" type="CollisionShape2D" parent="GameContent/Player/CharacterBody"]
+shape = SubResource("CircleShape2D_udwr5")
+
 [node name="Waist" type="Node2D" parent="GameContent/Player/CharacterBody"]
 
 [node name="RightFoot" type="Polygon2D" parent="GameContent/Player/CharacterBody/Waist"]
@@ -274,14 +313,11 @@ registration_id = "LeftLauncher"
 registration_type = "Node2D"
 
 [node name="LaunchEffect" type="Sprite2D" parent="GameContent/Player/CharacterBody/Torso/LeftLauncher"]
-modulate = Color(1, 1, 1, 0)
+visible = false
 position = Vector2(-7, -3)
 rotation = 1.5708
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("3_d83jc")
-
-[node name="MainBodyCollisionShape" type="CollisionShape2D" parent="GameContent/Player/CharacterBody"]
-shape = SubResource("CircleShape2D_udwr5")
 
 [node name="AnimationTree" type="AnimationTree" parent="GameContent/Player"]
 tree_root = SubResource("AnimationNodeBlendTree_lnxq1")

@@ -17,4 +17,7 @@ func fire_missile(
     if num_missiles == 0:
         playback.travel("End")
     else:
-        playback.travel("FireRightMissilePrep")
+        if String(playback.get_current_node()).contains("Left"):
+            playback.travel("FireRightMissilePrep")
+        else:
+            playback.travel("FireLeftMissilePrep")

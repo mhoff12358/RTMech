@@ -16,6 +16,9 @@ func run_script(lib: AnimationLibrary):
                 lib.add_animation(left_name, left_anim)
             while left_anim.get_track_count() != 0:
                 left_anim.remove_track(0)
+            left_anim.length = right_anim.length
+            left_anim.loop_mode = right_anim.loop_mode
+            left_anim.step = right_anim.step
             for i in range(0, right_anim.get_track_count()):
                 right_anim.copy_track(i, left_anim)
                 var track_path = String(left_anim.track_get_path(i))
