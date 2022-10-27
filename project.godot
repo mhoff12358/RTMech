@@ -10,6 +10,11 @@ config_version=5
 
 _global_script_classes=[{
 "base": "Node",
+"class": &"MissileController",
+"language": &"GDScript",
+"path": "res://Player/MissileController.gd"
+}, {
+"base": "Node",
 "class": &"PlayerController",
 "language": &"GDScript",
 "path": "res://Player/PlayerController.gd"
@@ -20,6 +25,7 @@ _global_script_classes=[{
 "path": "res://ShapePolygon2D.gd"
 }]
 _global_script_class_icons={
+"MissileController": "",
 "PlayerController": "",
 "ShapePolygon2D": ""
 }
@@ -30,6 +36,10 @@ config/name="RTMech"
 run/main_scene="res://test_scene.tscn"
 config/features=PackedStringArray("4.0", "Mobile")
 config/icon="res://icon.svg"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/script_caller/plugin.cfg")
 
 [input]
 

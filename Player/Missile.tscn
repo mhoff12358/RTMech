@@ -1,0 +1,75 @@
+[gd_scene load_steps=9 format=3 uid="uid://dk1yw5vtsbjsx"]
+
+[ext_resource type="Script" path="res://Player/MissileController.gd" id="1_shwva"]
+[ext_resource type="Script" path="res://ShapePolygon2D.gd" id="2_t5nbm"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6jrg7"]
+radius = 2.5
+height = 12.5
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1h7if"]
+size = Vector2(3, 3)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cb8rj"]
+size = Vector2(4, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c3btg"]
+size = Vector2(10, 5)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1ct7m"]
+radius = 2.5
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5rt0v"]
+size = Vector2(4, 1.5)
+
+[node name="Missile" type="DIContext"]
+
+[node name="MissileController" type="Node" parent="."]
+script = ExtResource("1_shwva")
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="DINodeRegistration" type="DINodeRegistration" parent="CharacterBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+position = Vector2(5, 0)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_6jrg7")
+
+[node name="Flame" type="Polygon2D" parent="CharacterBody2D"]
+rotation = 0.785398
+scale = Vector2(1, 1)
+color = Color(1, 0.686275, 0, 1)
+polygon = PackedVector2Array(-1.5, -1.5, 1.5, -1.5, 1.5, 1.5, -1.5, 1.5)
+script = ExtResource("2_t5nbm")
+shape = SubResource("RectangleShape2D_1h7if")
+
+[node name="Wings" type="Polygon2D" parent="CharacterBody2D"]
+position = Vector2(2, 0)
+color = Color(1, 0, 0, 1)
+polygon = PackedVector2Array(-2, -4, 2, -4, 2, 4, -2, 4)
+script = ExtResource("2_t5nbm")
+shape = SubResource("RectangleShape2D_cb8rj")
+
+[node name="Body" type="Polygon2D" parent="CharacterBody2D"]
+position = Vector2(5, 0)
+color = Color(0.121569, 0.121569, 0.121569, 1)
+polygon = PackedVector2Array(-5, -2.5, 5, -2.5, 5, 2.5, -5, 2.5)
+script = ExtResource("2_t5nbm")
+shape = SubResource("RectangleShape2D_c3btg")
+
+[node name="Head" type="Polygon2D" parent="CharacterBody2D/Body"]
+position = Vector2(5, 0)
+color = Color(0.12, 0.12, 0.12, 1)
+polygon = PackedVector2Array(2.5, 0, 2.3097, 0.956709, 1.76777, 1.76777, 0.956709, 2.3097, 1.53076e-16, 2.5, -0.956709, 2.3097, -1.76777, 1.76777, -2.3097, 0.956709, -2.5, 3.06152e-16, -2.3097, -0.956709, -1.76777, -1.76777, -0.956709, -2.3097, -4.59227e-16, -2.5, 0.956709, -2.3097, 1.76777, -1.76777, 2.3097, -0.956709, 2.5, 0)
+script = ExtResource("2_t5nbm")
+shape = SubResource("CircleShape2D_1ct7m")
+
+[node name="Wings2" type="Polygon2D" parent="CharacterBody2D"]
+position = Vector2(2, 0)
+color = Color(1, 0, 0, 1)
+polygon = PackedVector2Array(-2, -0.75, 2, -0.75, 2, 0.75, -2, 0.75)
+script = ExtResource("2_t5nbm")
+shape = SubResource("RectangleShape2D_5rt0v")

@@ -3,11 +3,17 @@ class_name PlayerController
 
 const FireMissiles = preload("res://AnimStuff/FireMissiles.gd")
 
+const k_missile_scene: PackedScene = preload("res://Player/Missile.tscn")
+
 var m_character_body: CharacterBody2D
 
 var m_waist: Node2D
 var m_torso: Node2D
+var m_right_launcher: Node2D
+var m_left_launcher: Node2D
 
+var m_context: DIContext
+var m_game_content: Node2D
 var m_animation_tree: AnimationTree
 var m_move_anim_node: AnimationNodeStateMachine
 var m_move_playback: AnimationNodeStateMachinePlayback
@@ -32,13 +38,17 @@ var m_was_walking_last_frame = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	var context = DIContext.get_nearest(self)
+	m_context = DIContext.get_nearest(self)
 
-	m_character_body = context.get_registered_node("CharacterBody2D")
-	m_waist = context.get_registered_node_with_id("Node2D", "Waist")
-	m_torso = context.get_registered_node_with_id("Node2D", "Torso")
+	m_game_content = m_context.get_registered_node("GameContent")
 
-	m_animation_tree = context.get_registered_node("AnimationTree")
+	m_character_body = m_context.get_registered_node("CharacterBody2D")
+	m_waist = m_context.get_registered_node_with_id("Node2D", "Waist")
+	m_torso = m_context.get_registered_node_with_id("Node2D", "Torso")
+	m_right_launcher = m_context.get_registered_node_with_id("Node2D", "RightLauncher")
+	m_left_launcher = m_context.get_registered_node_with_id("Node2D", "LeftLauncher")
+
+	m_animation_tree = m_context.get_registered_node("AnimationTree")
 	m_animation_tree.active = true
 	var root = m_animation_tree.tree_root
 	m_move_anim_node = root.get_node("Move")
@@ -54,8 +64,13 @@ func _ready():
 
 var first = true
 
-func fire_missile():
-	m_missiles.fire_missile(m_fire_missiles_playback)
+func fire_missile(right_launcher: bool):
+	var missile_trans: Transform2D
+	if right_launcher:
+		missile_trans = m_game_content.global_transform.inverse() * m_right_launcher.global_transform
+	else:
+		missile_trans = m_game_content.global_transform.inverse() * m_left_launcher.global_transform
+	m_missiles.fire_missile(m_fire_missiles_playback, m_game_content, k_missile_scene, missile_trans)
 
 func _process(delta):
 	#m_animation_tree.set("parameters/AddWalk/add_amount", m_add_amount)
