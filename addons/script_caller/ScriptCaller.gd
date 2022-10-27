@@ -7,7 +7,7 @@ var resource_picker: EditorResourcePicker
 
 func button_pressed():
 	var script: GDScript = script_picker.edited_resource
-	script.call("run_script", resource_picker.edited_resource)
+	script.new().call("run_script", resource_picker.edited_resource)
 
 func _enter_tree():
 	dock = preload("res://addons/script_caller/dock.tscn").instantiate()

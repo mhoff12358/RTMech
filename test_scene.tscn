@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://ShapePolygon2D.gd" id="1_ql0tc"]
 [ext_resource type="Texture2D" uid="uid://crn2j8tmslj8m" path="res://DownloadedAssets/craftpix-net-594347-11-free-pixel-art-explosion-sprites/PNG/Explosion/Explosion5.png" id="3_d83jc"]
 [ext_resource type="Script" path="res://AnimStuff/MissileAnimStateMachine.gd" id="4_470gi"]
-[ext_resource type="AnimationLibrary" uid="uid://cuhwmtncvgup" path="res://AnimStuff/player_animations.res" id="5_0ujac"]
+[ext_resource type="AnimationLibrary" uid="uid://cpr5ld00lsitg" path="res://AnimStuff/player_animations.tres" id="5_yu1bf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hoiqi"]
 size = Vector2(10, 8)
@@ -274,7 +274,7 @@ registration_id = "LeftLauncher"
 registration_type = "Node2D"
 
 [node name="LaunchEffect" type="Sprite2D" parent="GameContent/Player/CharacterBody/Torso/LeftLauncher"]
-visible = false
+modulate = Color(1, 1, 1, 0)
 position = Vector2(-7, -3)
 rotation = 1.5708
 scale = Vector2(0.1, 0.1)
@@ -296,5 +296,5 @@ parameters/Move/playback = SubResource("AnimationNodeStateMachinePlayback_floqk"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="GameContent/Player"]
 libraries = {
-"": ExtResource("5_0ujac")
+"": ExtResource("5_yu1bf")
 }

@@ -64,6 +64,12 @@ func _ready():
 
 var first = true
 
+func fire_right_missile():
+	fire_missile(true)
+
+func fire_left_missile():
+	fire_missile(false)
+
 func fire_missile(right_launcher: bool):
 	var missile_trans: Transform2D
 	if right_launcher:
