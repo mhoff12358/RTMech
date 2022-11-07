@@ -23,7 +23,16 @@ func run_script(lib: AnimationLibrary):
                 right_anim.copy_track(i, left_anim)
                 var track_path = String(left_anim.track_get_path(i))
                 left_anim.track_set_path(i, track_path.replace("Right", "Left"))
-                if left_anim.track_get_type(i) == Animation.TYPE_METHOD:
+                var track_type = left_anim.track_get_type(i)
+                if track_type == Animation.TYPE_VALUE:
+                    if track_path.ends_with(":position"):
+                        var key_indices = left_anim.value_track_get_key_indices(i, left_anim.length, left_anim.length)
+                        for k in key_indices:
+                            var position = left_anim.track_get_key_value(i, k)
+                            position.y = -position.y
+                            left_anim.track_set_key_value(i, k, position)
+
+                elif track_type == Animation.TYPE_METHOD:
                     var key_indices = left_anim.method_track_get_key_indices(i, left_anim.length, left_anim.length)
                     var keys = []
                     for k in key_indices:

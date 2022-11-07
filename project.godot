@@ -9,6 +9,11 @@
 config_version=5
 
 _global_script_classes=[{
+"base": "Node2D",
+"class": &"Footsteps",
+"language": &"GDScript",
+"path": "res://Player/Footsteps.gd"
+}, {
 "base": "Node",
 "class": &"MissileController",
 "language": &"GDScript",
@@ -25,6 +30,7 @@ _global_script_classes=[{
 "path": "res://ShapePolygon2D.gd"
 }]
 _global_script_class_icons={
+"Footsteps": "",
 "MissileController": "",
 "PlayerController": "",
 "ShapePolygon2D": ""
