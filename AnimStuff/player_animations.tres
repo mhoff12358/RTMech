@@ -1,4 +1,4 @@
-[gd_resource type="AnimationLibrary" load_steps=13 format=3 uid="uid://cpr5ld00lsitg"]
+[gd_resource type="AnimationLibrary" load_steps=15 format=3 uid="uid://cpr5ld00lsitg"]
 
 [sub_resource type="Animation" id="Animation_6ysnm"]
 length = 0.5
@@ -251,6 +251,30 @@ tracks/6/keys = {
 "update": 0,
 "values": [0.0]
 }
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("PlayerController/WalkingState:m_return_to_placed_foot")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("CharacterBody/Waist:rotation")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [6.28319]
+}
 
 [sub_resource type="Animation" id="Animation_3chog"]
 resource_name = "Spinny"
@@ -280,12 +304,12 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.5, 1),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(0, -12), Vector2(9, -12), Vector2(0, -12)]
+"values": [Vector2(0, -12), Vector2(25, -12), Vector2(0, -12)]
 }
 tracks/1/type = "method"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("PlayerController")
+tracks/1/path = NodePath("PlayerController/WalkingState")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -293,11 +317,23 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [],
-"method": &"lift_left_foot"
+"method": &"start_step"
 }, {
 "args": [],
-"method": &"place_left_foot"
+"method": &"place_left"
 }]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CharacterBody/Waist/RightFoot:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 12), Vector2(-15, 12), Vector2(0, 12)]
 }
 
 [sub_resource type="Animation" id="Animation_7fe5g"]
@@ -312,12 +348,12 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.5, 1),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(0, 12), Vector2(9, 12), Vector2(0, 12)]
+"values": [Vector2(0, 12), Vector2(25, 12), Vector2(0, 12)]
 }
 tracks/1/type = "method"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("PlayerController")
+tracks/1/path = NodePath("PlayerController/WalkingState")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -325,11 +361,23 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [],
-"method": &"lift_right_foot"
+"method": &"start_step"
 }, {
 "args": [],
-"method": &"place_right_foot"
+"method": &"place_right"
 }]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CharacterBody/Waist/LeftFoot:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, -12), Vector2(-15, -12), Vector2(0, -12)]
 }
 
 [sub_resource type="Animation" id="Animation_lsa3a"]
@@ -378,6 +426,38 @@ tracks/2/keys = {
 }]
 }
 
+[sub_resource type="Animation" id="Animation_e4n75"]
+resource_name = "TurnWaistLeft"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CharacterBody/Waist:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, -6.28319]
+}
+
+[sub_resource type="Animation" id="Animation_dab3y"]
+resource_name = "TurnWaistRight"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CharacterBody/Waist:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.28319]
+}
+
 [resource]
 _data = {
 "FireLeftMissile": SubResource("Animation_6ysnm"),
@@ -391,5 +471,7 @@ _data = {
 "Spinny": SubResource("Animation_3chog"),
 "StepLeft": SubResource("Animation_txkmj"),
 "StepRight": SubResource("Animation_7fe5g"),
+"TurnWaistLeft": SubResource("Animation_e4n75"),
+"TurnWaistRight": SubResource("Animation_dab3y"),
 "Walk": SubResource("Animation_lsa3a")
 }

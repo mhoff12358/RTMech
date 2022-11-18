@@ -28,12 +28,18 @@ _global_script_classes=[{
 "class": &"ShapePolygon2D",
 "language": &"GDScript",
 "path": "res://ShapePolygon2D.gd"
+}, {
+"base": "Node",
+"class": &"WalkingState",
+"language": &"GDScript",
+"path": "res://Player/WalkingState.gd"
 }]
 _global_script_class_icons={
 "Footsteps": "",
 "MissileController": "",
 "PlayerController": "",
-"ShapePolygon2D": ""
+"ShapePolygon2D": "",
+"WalkingState": ""
 }
 
 [application]
