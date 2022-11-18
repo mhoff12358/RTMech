@@ -35,37 +35,19 @@ func start_step():
     var heading_delta = min(m_heading_offset_max, max(-m_heading_offset_max, m_desired_heading_offset))
     m_desired_heading_offset -= heading_delta
 
-    print("delta ", heading_delta)
     if heading_delta > 0:
         m_turn_waist_playback.travel("TurnWaistRight")
     elif heading_delta < 0:
         m_turn_waist_playback.travel("TurnWaistLeft")
-    print("amt", abs(heading_delta) / 45.0)
-#    m_animation_tree.set("parameters/AddTurnWaist/add_amount", abs(heading_delta) / 45.0)
-
-#    m_left_foot.rotation = heading_delta * PI / 180
-#    m_right_foot.rotation = heading_delta * PI / 180
-#    m_waist.rotation = heading_delta * PI / 180
-
-#    m_animation_tree.set("parameters/TurnWaistScale/scale", heading_delta / 360.0)
-#    m_animation_tree.set("parameters/TurnWaistSeek/seek", 0)
-#
-#    if heading_delta < 0:
-#        m_animation_tree.set("parameters/TurnWaistBlend/blend_amount", 0)
-#    else:
-#        m_animation_tree.set("parameters/TurnWaistBlend/blend_amount", 1)
+    m_animation_tree.set("parameters/AddTurnWaist/add_amount", abs(heading_delta) / 45.0)
 
 func place_right():
     m_placed_foot = 1
     m_grounded_foot_position = m_right_foot.global_position
 
-#    m_animation_tree.set("parameters/TurnWaistScale/scale", 0)
-
 func place_left():
     m_placed_foot = 0
     m_grounded_foot_position = m_left_foot.global_position
-
-#    m_animation_tree.set("parameters/TurnWaistScale/scale", 0)
 
 func _ready():
     m_step_playback = m_animation_tree.get("parameters/Step/playback")
@@ -81,14 +63,10 @@ func internal_process(delta: float):
         m_throttle += m_throttle_adjust_speed * delta
     m_throttle = max(-1, min(1, m_throttle))
 
-#    if Input.is_action_pressed("WalkDirectionLeft"):
-#        m_desired_heading_offset -= m_desired_heading_offset_adjust_speed * delta
-#    if Input.is_action_pressed("WalkDirectionRight"):
-#        m_desired_heading_offset += m_desired_heading_offset_adjust_speed * delta
-    if Input.is_action_just_pressed("WalkDirectionLeft"):
-        m_desired_heading_offset -= 45.0
-    if Input.is_action_just_pressed("WalkDirectionRight"):
-        m_desired_heading_offset += 45.0
+    if Input.is_action_pressed("WalkDirectionLeft"):
+        m_desired_heading_offset -= m_desired_heading_offset_adjust_speed * delta
+    if Input.is_action_pressed("WalkDirectionRight"):
+        m_desired_heading_offset += m_desired_heading_offset_adjust_speed * delta
 
     var clipped_throttle = get_clipped_throttle()
     var current_walking_node = m_step_playback.get_current_node()
@@ -111,23 +89,9 @@ func internal_process(delta: float):
     m_character_body.move_and_collide(body_offset)
 
 func apply_waist_rotation_to_body():
-    var waist_position = m_waist.global_position
-    var left_foot_position = m_left_foot.global_position
-    var right_foot_position = m_right_foot.global_position
-
     var waist_rotation = m_waist.global_rotation
     m_character_body.rotation = waist_rotation
     m_waist.rotation = waist_rotation
-
-#    var waist_rotation = m_waist.rotation
-#    m_waist.rotation = 0
-#    m_character_body.rotation += waist_rotation
-
-    #m_waist.global_position = waist_position
-    #m_left_foot.rotation = 0
-    #m_left_foot.global_position = left_foot_position
-    #m_right_foot.rotation = 0
-    #m_right_foot.global_position = right_foot_position
 
 func get_clipped_throttle():
     if abs(m_throttle) < m_throttle_dead_zone:
