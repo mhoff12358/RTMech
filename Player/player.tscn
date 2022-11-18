@@ -1,4 +1,4 @@
-[gd_scene load_steps=64 format=3 uid="uid://bxqdcrb8j06rk"]
+[gd_scene load_steps=70 format=3 uid="uid://bxqdcrb8j06rk"]
 
 [ext_resource type="Script" path="res://Player/PlayerController.gd" id="1_h76f1"]
 [ext_resource type="Script" path="res://ShapePolygon2D.gd" id="2_ql4do"]
@@ -111,44 +111,43 @@ transitions = ["FireRightMissile", "FireRightMissileRecover", SubResource("Anima
 graph_offset = Vector2(-244, -108.198)
 script = ExtResource("4_m88j3")
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_hrldk"]
+animation = &"Nothing"
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_vjqrk"]
 animation = &"Punch"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1naaq"]
-animation = &"RESET"
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_s8cmi"]
+switch_mode = 2
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_676vi"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_bky7y"]
 switch_mode = 2
 auto_advance = true
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_gmemh"]
-switch_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ar6s5"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_hj880"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_gy1s3"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_0dehi"]
 switch_mode = 2
 auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2a6ns"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_u3ok4"]
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_hgsk8"]
 states/FireMissiles/node = SubResource("AnimationNodeStateMachine_4erh4")
 states/FireMissiles/position = Vector2(678, 158)
+states/Nothing/node = SubResource("AnimationNodeAnimation_hrldk")
+states/Nothing/position = Vector2(395.667, 92.3351)
 states/Punch/node = SubResource("AnimationNodeAnimation_vjqrk")
-states/Punch/position = Vector2(621, 66)
-states/RESET/node = SubResource("AnimationNodeAnimation_1naaq")
-states/RESET/position = Vector2(404, 100)
-transitions = ["Punch", "RESET", SubResource("AnimationNodeStateMachineTransition_676vi"), "Start", "RESET", SubResource("AnimationNodeStateMachineTransition_gmemh"), "RESET", "Punch", SubResource("AnimationNodeStateMachineTransition_ar6s5"), "RESET", "FireMissiles", SubResource("AnimationNodeStateMachineTransition_hj880"), "FireMissiles", "RESET", SubResource("AnimationNodeStateMachineTransition_gy1s3")]
+states/Punch/position = Vector2(673, 61.3333)
+states/Start/position = Vector2(202.667, 83.3333)
+transitions = ["Start", "Nothing", SubResource("AnimationNodeStateMachineTransition_s8cmi"), "Punch", "Nothing", SubResource("AnimationNodeStateMachineTransition_bky7y"), "FireMissiles", "Nothing", SubResource("AnimationNodeStateMachineTransition_0dehi"), "Nothing", "Punch", SubResource("AnimationNodeStateMachineTransition_2a6ns"), "Nothing", "FireMissiles", SubResource("AnimationNodeStateMachineTransition_u3ok4")]
 graph_offset = Vector2(-39, -39.6649)
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_w0mkw"]
-animation = &"RESET"
+animation = &"Nothing"
 
-[sub_resource type="AnimationNodeTimeSeek" id="AnimationNodeTimeSeek_iplrr"]
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_dpqy2"]
-animation = &"RESET"
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_pyuyw"]
+animation = &"Nothing"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_we4rp"]
 animation = &"StepLeft"
@@ -156,70 +155,92 @@ animation = &"StepLeft"
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_dt4n2"]
 animation = &"StepRight"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_gyqku"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_tft85"]
-
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_nd5ok"]
 switch_mode = 2
 auto_advance = true
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6b15r"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_rqv55"]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_mlekg"]
 switch_mode = 2
 auto_advance = true
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_fb75a"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_krh2n"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_emsfe"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_b4wsu"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_73igh"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_as75m"]
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_kdg0w"]
-states/RESET/node = SubResource("AnimationNodeAnimation_dpqy2")
-states/RESET/position = Vector2(390.667, 106.667)
+states/Nothing/node = SubResource("AnimationNodeAnimation_pyuyw")
+states/Nothing/position = Vector2(386, 114.667)
 states/Start/position = Vector2(211.333, 100)
 states/StepLeft/node = SubResource("AnimationNodeAnimation_we4rp")
 states/StepLeft/position = Vector2(613.333, 23.3333)
 states/StepRight/node = SubResource("AnimationNodeAnimation_dt4n2")
 states/StepRight/position = Vector2(613.556, 184.667)
-transitions = ["Start", "RESET", SubResource("AnimationNodeStateMachineTransition_gyqku"), "RESET", "StepLeft", SubResource("AnimationNodeStateMachineTransition_tft85"), "StepLeft", "StepRight", SubResource("AnimationNodeStateMachineTransition_nd5ok"), "StepRight", "RESET", SubResource("AnimationNodeStateMachineTransition_6b15r"), "RESET", "StepRight", SubResource("AnimationNodeStateMachineTransition_rqv55"), "StepRight", "StepLeft", SubResource("AnimationNodeStateMachineTransition_mlekg"), "StepLeft", "RESET", SubResource("AnimationNodeStateMachineTransition_fb75a")]
+transitions = ["StepLeft", "StepRight", SubResource("AnimationNodeStateMachineTransition_nd5ok"), "StepRight", "StepLeft", SubResource("AnimationNodeStateMachineTransition_mlekg"), "Start", "Nothing", SubResource("AnimationNodeStateMachineTransition_krh2n"), "Nothing", "StepLeft", SubResource("AnimationNodeStateMachineTransition_emsfe"), "StepLeft", "Nothing", SubResource("AnimationNodeStateMachineTransition_b4wsu"), "Nothing", "StepRight", SubResource("AnimationNodeStateMachineTransition_73igh"), "StepRight", "Nothing", SubResource("AnimationNodeStateMachineTransition_as75m")]
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1cugm"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_bycps"]
+animation = &"TurnNeutral"
 
-[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_8318k"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_rebhl"]
+animation = &"TurnWaistLeft"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_3jacn"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0atak"]
+animation = &"TurnWaistRight"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_gxpm4"]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_dfner"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_gb8wt"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_7xqwj"]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_m7lob"]
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_vra6h"]
+states/TurnNeutral/node = SubResource("AnimationNodeAnimation_bycps")
+states/TurnNeutral/position = Vector2(385.333, 98)
+states/TurnWaistLeft/node = SubResource("AnimationNodeAnimation_rebhl")
+states/TurnWaistLeft/position = Vector2(595.885, 31.3333)
+states/TurnWaistRight/node = SubResource("AnimationNodeAnimation_0atak")
+states/TurnWaistRight/position = Vector2(596.667, 180)
+transitions = ["TurnWaistLeft", "TurnNeutral", SubResource("AnimationNodeStateMachineTransition_gxpm4"), "Start", "TurnNeutral", SubResource("AnimationNodeStateMachineTransition_dfner"), "TurnNeutral", "TurnWaistRight", SubResource("AnimationNodeStateMachineTransition_gb8wt"), "TurnWaistRight", "TurnNeutral", SubResource("AnimationNodeStateMachineTransition_7xqwj"), "TurnNeutral", "TurnWaistLeft", SubResource("AnimationNodeStateMachineTransition_m7lob")]
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_lnxq1"]
-graph_offset = Vector2(-604.099, -30.6636)
+graph_offset = Vector2(-553.458, -76.7333)
 nodes/AddAttack/node = SubResource("AnimationNodeAdd2_n7s02")
 nodes/AddAttack/position = Vector2(480, 133.333)
 nodes/AddTurnWaist/node = SubResource("AnimationNodeAdd2_uqhym")
-nodes/AddTurnWaist/position = Vector2(280, 13.3333)
+nodes/AddTurnWaist/position = Vector2(226.667, 66.6667)
 nodes/AddWalk/node = SubResource("AnimationNodeAdd2_ebtpy")
 nodes/AddWalk/position = Vector2(26.6667, -26.6667)
 nodes/Attack/node = SubResource("AnimationNodeStateMachine_hgsk8")
 nodes/Attack/position = Vector2(293.333, 253.333)
-nodes/RESET/node = SubResource("AnimationNodeAnimation_w0mkw")
-nodes/RESET/position = Vector2(-146.667, -80)
-nodes/SeekTurnWaistLeftOrRight/node = SubResource("AnimationNodeTimeSeek_iplrr")
-nodes/SeekTurnWaistLeftOrRight/position = Vector2(26.6667, 213.333)
+nodes/Nothing/node = SubResource("AnimationNodeAnimation_w0mkw")
+nodes/Nothing/position = Vector2(-146.667, -80)
 nodes/Step/node = SubResource("AnimationNodeStateMachine_kdg0w")
 nodes/Step/position = Vector2(-173.333, 53.3333)
-nodes/TurnWaistLeft/node = SubResource("AnimationNodeAnimation_1cugm")
-nodes/TurnWaistLeft/position = Vector2(-413.333, 240)
-nodes/TurnWaistLeftOrRight/node = SubResource("AnimationNodeBlend2_8318k")
-nodes/TurnWaistLeftOrRight/position = Vector2(-200, 253.333)
-nodes/TurnWaistRight/node = SubResource("AnimationNodeAnimation_3jacn")
-nodes/TurnWaistRight/position = Vector2(-413.333, 360)
+nodes/TurnWaist/node = SubResource("AnimationNodeStateMachine_vra6h")
+nodes/TurnWaist/position = Vector2(-106.667, 173.333)
 nodes/output/position = Vector2(666.667, 133.333)
-node_connections = [&"output", 0, &"AddAttack", &"AddAttack", 0, &"AddWalk", &"AddAttack", 1, &"Attack", &"AddWalk", 0, &"RESET", &"AddWalk", 1, &"Step", &"TurnWaistLeftOrRight", 0, &"TurnWaistLeft", &"TurnWaistLeftOrRight", 1, &"TurnWaistRight", &"SeekTurnWaistLeftOrRight", 0, &"TurnWaistLeftOrRight"]
+node_connections = [&"output", 0, &"AddAttack", &"AddAttack", 0, &"AddTurnWaist", &"AddAttack", 1, &"Attack", &"AddTurnWaist", 0, &"AddWalk", &"AddTurnWaist", 1, &"TurnWaist", &"AddWalk", 0, &"Nothing", &"AddWalk", 1, &"Step"]
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_mofkl"]
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_6y5dn"]
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_nn8p2"]
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_nylt0"]
 
 [node name="Player" type="DIContext"]
 
@@ -243,24 +264,8 @@ shape = SubResource("CircleShape2D_udwr5")
 [node name="Waist" type="Node2D" parent="CharacterBody"]
 rotation = 6.28319
 
-[node name="RightFoot" type="Polygon2D" parent="CharacterBody/Waist"]
-position = Vector2(0, 12)
-color = Color(0.380392, 0, 0, 1)
-polygon = PackedVector2Array(-5, -4, 5, -4, 5, 4, -5, 4)
-script = ExtResource("2_ql4do")
-shape = SubResource("RectangleShape2D_hoiqi")
-
-[node name="DINodeRegistration" type="DINodeRegistration" parent="CharacterBody/Waist/RightFoot"]
-registration_id = "RightFoot"
-registration_type = "Node2D"
-
-[node name="ShapePolygon2D" type="Polygon2D" parent="CharacterBody/Waist/RightFoot"]
-position = Vector2(5, 0)
-rotation = 0.785398
-color = Color(0.38, 0, 0, 1)
-polygon = PackedVector2Array(-2.82, -2.82, 2.82, -2.82, 2.82, 2.82, -2.82, 2.82)
-script = ExtResource("2_ql4do")
-shape = SubResource("RectangleShape2D_xsspf")
+[node name="DINodeRegistration" type="DINodeRegistration" parent="CharacterBody/Waist"]
+registration_id = "Waist"
 
 [node name="LeftFoot" type="Polygon2D" parent="CharacterBody/Waist"]
 position = Vector2(0, -12)
@@ -281,8 +286,24 @@ polygon = PackedVector2Array(-2.82, -2.82, 2.82, -2.82, 2.82, 2.82, -2.82, 2.82)
 script = ExtResource("2_ql4do")
 shape = SubResource("RectangleShape2D_xsspf")
 
-[node name="DINodeRegistration" type="DINodeRegistration" parent="CharacterBody/Waist"]
-registration_id = "Waist"
+[node name="RightFoot" type="Polygon2D" parent="CharacterBody/Waist"]
+position = Vector2(0, 12)
+color = Color(0.380392, 0, 0, 1)
+polygon = PackedVector2Array(-5, -4, 5, -4, 5, 4, -5, 4)
+script = ExtResource("2_ql4do")
+shape = SubResource("RectangleShape2D_hoiqi")
+
+[node name="DINodeRegistration" type="DINodeRegistration" parent="CharacterBody/Waist/RightFoot"]
+registration_id = "RightFoot"
+registration_type = "Node2D"
+
+[node name="ShapePolygon2D" type="Polygon2D" parent="CharacterBody/Waist/RightFoot"]
+position = Vector2(5, 0)
+rotation = 0.785398
+color = Color(0.38, 0, 0, 1)
+polygon = PackedVector2Array(-2.82, -2.82, 2.82, -2.82, 2.82, 2.82, -2.82, 2.82)
+script = ExtResource("2_ql4do")
+shape = SubResource("RectangleShape2D_xsspf")
 
 [node name="Torso" type="Node2D" parent="CharacterBody"]
 
@@ -363,9 +384,8 @@ parameters/AddTurnWaist/add_amount = 1.0
 parameters/AddWalk/add_amount = 1.0
 parameters/Attack/playback = SubResource("AnimationNodeStateMachinePlayback_mofkl")
 parameters/Attack/FireMissiles/playback = SubResource("AnimationNodeStateMachinePlayback_6y5dn")
-parameters/SeekTurnWaistLeftOrRight/seek_position = 0.0
 parameters/Step/playback = SubResource("AnimationNodeStateMachinePlayback_nn8p2")
-parameters/TurnWaistLeftOrRight/blend_amount = 0
+parameters/TurnWaist/playback = SubResource("AnimationNodeStateMachinePlayback_nylt0")
 
 [node name="DINodeRegistration" type="DINodeRegistration" parent="AnimationTree"]
 
