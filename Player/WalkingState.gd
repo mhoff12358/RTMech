@@ -12,6 +12,7 @@ signal throttle_changed(amount: float)
 @export var m_throttle_adjust_speed: float = 0.5
 
 @export var m_desired_heading_offset: float = 0
+var m_animation_applying_heading_offset: float = 0
 @export var m_desired_heading_offset_adjust_speed: float = 180
 @export var m_heading_offset_max: float = 45
 
@@ -42,6 +43,7 @@ func start_step():
     apply_waist_rotation_to_body()
     var heading_delta = min(m_heading_offset_max, max(-m_heading_offset_max, m_desired_heading_offset))
     m_desired_heading_offset -= heading_delta
+    m_animation_applying_heading_offset = heading_delta
 
     if heading_delta > 0:
         m_turn_waist_playback.travel("TurnWaistRight")
@@ -75,7 +77,7 @@ func internal_process(delta: float):
         m_desired_heading_offset -= m_desired_heading_offset_adjust_speed * delta
     if Input.is_action_pressed("WalkDirectionRight"):
         m_desired_heading_offset += m_desired_heading_offset_adjust_speed * delta
-    m_facing_line.rotation = m_desired_heading_offset * PI / 180.0
+    m_facing_line.rotation = (m_desired_heading_offset + m_animation_applying_heading_offset) * PI / 180.0
 
     var clipped_throttle = get_clipped_throttle()
     var current_walking_node = m_step_playback.get_current_node()
@@ -98,6 +100,7 @@ func internal_process(delta: float):
     m_character_body.move_and_collide(body_offset)
 
 func apply_waist_rotation_to_body():
+    m_animation_applying_heading_offset = 0
     var waist_rotation = m_waist.global_rotation
     m_character_body.rotation = waist_rotation
     m_waist.rotation = waist_rotation
