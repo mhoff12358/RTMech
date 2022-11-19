@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://c6548x0xpwqos"]
+[gd_scene load_steps=5 format=3 uid="uid://c6548x0xpwqos"]
 
 [ext_resource type="PackedScene" uid="uid://b4vrxq55566ax" path="res://environment.tscn" id="1_0xa2k"]
 [ext_resource type="Script" path="res://UI/Throttle.gd" id="2_cgolh"]
+[ext_resource type="LabelSettings" uid="uid://b5xxulqk4ht0g" path="res://UI/throttle_label_settings.tres" id="3_lr338"]
 
 [sub_resource type="World3D" id="World3D_ryrlm"]
 
@@ -18,7 +19,6 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="ColorRect" type="ColorRect" parent="Control"]
-layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -28,7 +28,6 @@ color = Color(0, 0.109804, 0.172549, 1)
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="Control"]
 clip_contents = true
-layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
 anchor_right = 0.5
@@ -56,7 +55,7 @@ registration_id = "GameContext"
 
 [node name="Container" type="Control" parent="Control"]
 clip_contents = true
-layout_mode = 1
+layout_mode = 3
 anchors_preset = 0
 offset_right = 324.0
 offset_bottom = 499.0
@@ -72,7 +71,6 @@ offset_bottom = 439.0
 color = Color(0.368627, 0.368627, 0.368627, 1)
 
 [node name="ThrottleBar" type="ColorRect" parent="Control/Container/Throttle/Background"]
-layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -87,7 +85,7 @@ grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
 [node name="TopPosition" type="Control" parent="Control/Container/Throttle/Background/ThrottleBar"]
-layout_mode = 1
+layout_mode = 3
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
@@ -97,7 +95,7 @@ grow_horizontal = 2
 registration_id = "TopPosition"
 
 [node name="BottomPosition" type="Control" parent="Control/Container/Throttle/Background/ThrottleBar"]
-layout_mode = 1
+layout_mode = 3
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
@@ -109,8 +107,20 @@ grow_vertical = 0
 [node name="DINodeRegistration" type="DINodeRegistration" parent="Control/Container/Throttle/Background/ThrottleBar/BottomPosition"]
 registration_id = "BottomPosition"
 
-[node name="Handle" type="ColorRect" parent="Control/Container/Throttle/Background/ThrottleBar"]
-layout_mode = 1
+[node name="Handle" type="Control" parent="Control/Container/Throttle/Background/ThrottleBar"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="DINodeRegistration" type="DINodeRegistration" parent="Control/Container/Throttle/Background/ThrottleBar/Handle"]
+registration_id = "Handle"
+
+[node name="HandleColor" type="ColorRect" parent="Control/Container/Throttle/Background/ThrottleBar/Handle"]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -122,8 +132,45 @@ offset_right = 40.0
 offset_bottom = 15.0
 grow_horizontal = 2
 grow_vertical = 2
+pivot_offset = Vector2(40, 15)
 color = Color(0.690196, 0.690196, 0.690196, 1)
 
-[node name="DINodeRegistration" type="DINodeRegistration" parent="Control/Container/Throttle/Background/ThrottleBar/Handle"]
-registration_id = "Handle"
-registration_type = "Control"
+[node name="Label" type="Label" parent="Control/Container/Throttle/Background"]
+offset_left = 11.0
+offset_top = 136.0
+offset_right = 51.0
+offset_bottom = 162.0
+text = "0"
+label_settings = ExtResource("3_lr338")
+
+[node name="Label2" type="Label" parent="Control/Container/Throttle/Background"]
+offset_left = 11.0
+offset_top = 190.0
+offset_right = 51.0
+offset_bottom = 216.0
+text = "-50"
+label_settings = ExtResource("3_lr338")
+
+[node name="Label3" type="Label" parent="Control/Container/Throttle/Background"]
+offset_left = 10.0
+offset_top = 232.0
+offset_right = 50.0
+offset_bottom = 258.0
+text = "-100"
+label_settings = ExtResource("3_lr338")
+
+[node name="Label4" type="Label" parent="Control/Container/Throttle/Background"]
+offset_left = 12.0
+offset_top = 86.0
+offset_right = 52.0
+offset_bottom = 112.0
+text = "50"
+label_settings = ExtResource("3_lr338")
+
+[node name="Label5" type="Label" parent="Control/Container/Throttle/Background"]
+offset_left = 10.0
+offset_top = 37.0
+offset_right = 50.0
+offset_bottom = 63.0
+text = "100"
+label_settings = ExtResource("3_lr338")

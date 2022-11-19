@@ -1,4 +1,4 @@
-[gd_scene load_steps=71 format=3 uid="uid://bxqdcrb8j06rk"]
+[gd_scene load_steps=72 format=3 uid="uid://bxqdcrb8j06rk"]
 
 [ext_resource type="Script" path="res://Player/PlayerController.gd" id="1_h76f1"]
 [ext_resource type="Script" path="res://ShapePolygon2D.gd" id="2_ql4do"]
@@ -12,6 +12,9 @@ type = "WalkingState"
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_udwr5"]
 radius = 15.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kono6"]
+size = Vector2(40, 2)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hoiqi"]
 size = Vector2(10, 8)
@@ -264,6 +267,19 @@ script = ExtResource("2_ybb34")
 
 [node name="MainBodyCollisionShape" type="CollisionShape2D" parent="CharacterBody"]
 shape = SubResource("CircleShape2D_udwr5")
+
+[node name="FacingLine" type="Node2D" parent="CharacterBody"]
+
+[node name="DINodeRegistration" type="DINodeRegistration" parent="CharacterBody/FacingLine"]
+registration_id = "FacingLine"
+registration_type = "Node2D"
+
+[node name="ShapePolygon2D" type="Polygon2D" parent="CharacterBody/FacingLine"]
+position = Vector2(20, 0)
+color = Color(1, 0.611765, 0.431373, 0.529412)
+polygon = PackedVector2Array(-20, -1, 20, -1, 20, 1, -20, 1)
+script = ExtResource("2_ql4do")
+shape = SubResource("RectangleShape2D_kono6")
 
 [node name="Waist" type="Node2D" parent="CharacterBody"]
 

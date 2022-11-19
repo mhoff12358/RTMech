@@ -21,6 +21,8 @@ signal throttle_changed(amount: float)
 
 @onready var m_character_body: CharacterBody2D = m_context.get_registered_node("CharacterBody2D")
 
+@onready var m_facing_line: Node2D = m_context.get_registered_node_with_id("Node2D", "FacingLine")
+
 @onready var m_animation_tree: AnimationTree = m_context.get_registered_node("AnimationTree")
 var m_step_playback: AnimationNodeStateMachinePlayback
 var m_turn_waist_playback: AnimationNodeStateMachinePlayback
@@ -67,12 +69,13 @@ func internal_process(delta: float):
         m_throttle -= m_throttle_adjust_speed * delta
     if Input.is_action_pressed("WalkDirectionUp"):
         m_throttle += m_throttle_adjust_speed * delta
-    m_throttle = max(-1, min(1, m_throttle))
+    m_throttle = max(0, min(1, m_throttle))
 
     if Input.is_action_pressed("WalkDirectionLeft"):
         m_desired_heading_offset -= m_desired_heading_offset_adjust_speed * delta
     if Input.is_action_pressed("WalkDirectionRight"):
         m_desired_heading_offset += m_desired_heading_offset_adjust_speed * delta
+    m_facing_line.rotation = m_desired_heading_offset * PI / 180.0
 
     var clipped_throttle = get_clipped_throttle()
     var current_walking_node = m_step_playback.get_current_node()
