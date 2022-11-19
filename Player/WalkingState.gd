@@ -1,7 +1,13 @@
 extends Node
 class_name WalkingState
 
-@export var m_throttle: float = 0
+signal throttle_changed(amount: float)
+@export var m_throttle: float = 0:
+    set(value):
+        print("throttle val: ", value)
+        m_throttle = value
+        throttle_changed.emit(m_throttle)
+
 @export var m_throttle_dead_zone: float = 0.1
 @export var m_throttle_adjust_speed: float = 0.5
 
