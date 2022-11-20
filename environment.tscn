@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://b4vrxq55566ax"]
+[gd_scene load_steps=7 format=3 uid="uid://f636vr2cskk3"]
 
 [ext_resource type="Texture2D" uid="uid://bjfa1lce0s1jb" path="res://DownloadedAssets/Roguelike Modern City pack/Spritesheet/roguelikeCity_magenta.png" id="1_1kp0d"]
 [ext_resource type="Script" path="res://Player/Footsteps.gd" id="2_bbgyj"]

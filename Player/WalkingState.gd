@@ -4,7 +4,6 @@ class_name WalkingState
 signal throttle_changed(amount: float)
 @export var m_throttle: float = 0:
     set(value):
-        print("throttle val: ", value)
         m_throttle = value
         throttle_changed.emit(m_throttle)
 
@@ -37,18 +36,28 @@ var m_turn_waist_playback: AnimationNodeStateMachinePlayback
 
 var m_grounded_foot_position: Vector2 = Vector2.ZERO
 
+var should_start_step = false
+
 func start_step():
+    should_start_step = true
+
+func start_step_int():
     m_animation_tree.set("parameters/AddWalk/add_amount", get_clipped_throttle())
 
-    apply_waist_rotation_to_body()
+    print("applying ", m_animation_applying_heading_offset)
+    m_character_body.rotation += m_animation_applying_heading_offset * PI / 180.0
+    m_turn_waist_playback.start("TurnNeutral")
+
     var heading_delta = min(m_heading_offset_max, max(-m_heading_offset_max, m_desired_heading_offset))
     m_desired_heading_offset -= heading_delta
     m_animation_applying_heading_offset = heading_delta
 
+    print("turn delta ", heading_delta)
+
     if heading_delta > 0:
-        m_turn_waist_playback.travel("TurnWaistRight")
+        m_turn_waist_playback.start("TurnWaistRight")
     elif heading_delta < 0:
-        m_turn_waist_playback.travel("TurnWaistLeft")
+        m_turn_waist_playback.start("TurnWaistLeft")
     m_animation_tree.set("parameters/AddTurnWaist/add_amount", abs(heading_delta) / 45.0)
 
 func place_right():
@@ -87,6 +96,10 @@ func internal_process(delta: float):
     elif currently_walking and (clipped_throttle == 0):
         m_step_playback.travel("Nothing")
 
+    if should_start_step:
+        start_step_int()
+        should_start_step = false
+
     var current_grounded_foot_position: Vector2
     if m_placed_foot == 1:
         current_grounded_foot_position = m_right_foot.global_position
@@ -99,11 +112,19 @@ func internal_process(delta: float):
     var body_offset = -m_character_body.global_position + m_grounded_foot_position - (-m_character_body.global_position + current_grounded_foot_position)
     m_character_body.move_and_collide(body_offset)
 
+    if Input.is_action_just_pressed("FacingDirectionUp"):
+        place_right()
+        m_animation_tree.set("parameters/AddWalk/add_amount", 0.5)
+        m_animation_tree.set("parameters/AddTurnWaist/add_amount", 10.0 / 45.0)
+        m_step_playback.travel("StepLeft")
+        m_turn_waist_playback.travel("TurnWaistLeft")
+
+
 func apply_waist_rotation_to_body():
     m_animation_applying_heading_offset = 0
-    var waist_rotation = m_waist.global_rotation
-    m_character_body.rotation = waist_rotation
-    m_waist.rotation = waist_rotation
+    var waist_rotation = m_waist.rotation
+    m_character_body.rotation += waist_rotation
+    m_waist.rotation = 0
 
 func get_clipped_throttle():
     if abs(m_throttle) < m_throttle_dead_zone:

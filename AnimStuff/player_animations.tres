@@ -1,12 +1,12 @@
 [gd_resource type="AnimationLibrary" load_steps=17 format=3 uid="uid://cpr5ld00lsitg"]
 
-[sub_resource type="Animation" id="Animation_6ysnm"]
+[sub_resource type="Animation" id="Animation_8clj0"]
 length = 0.5
 step = 0.01
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("CharacterBody/Torso/LeftLauncher/LaunchEffect:visible")
+tracks/0/path = NodePath("CharacterBody/Waist/Torso/LeftLauncher/LaunchEffect:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -18,7 +18,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("CharacterBody/Torso/LeftLauncher/LaunchEffect:modulate")
+tracks/1/path = NodePath("CharacterBody/Waist/Torso/LeftLauncher/LaunchEffect:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -42,13 +42,13 @@ tracks/2/keys = {
 }]
 }
 
-[sub_resource type="Animation" id="Animation_ge4ci"]
+[sub_resource type="Animation" id="Animation_rtwv0"]
 length = 0.1
 step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("CharacterBody/Torso/LeftLauncher:color")
+tracks/0/path = NodePath("CharacterBody/Waist/Torso/LeftLauncher:color")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -58,12 +58,12 @@ tracks/0/keys = {
 "values": [Color(0.333333, 0.0509804, 0.521569, 1), Color(0.486275, 0.0745098, 0.760784, 1), Color(0.333333, 0.0509804, 0.521569, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_owt0c"]
+[sub_resource type="Animation" id="Animation_wvqh6"]
 length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("CharacterBody/Torso/LeftLauncher:color")
+tracks/0/path = NodePath("CharacterBody/Waist/Torso/LeftLauncher:color")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -73,14 +73,14 @@ tracks/0/keys = {
 "values": [Color(0.333333, 0.0509804, 0.521569, 1), Color(0.129412, 0.0196078, 0.2, 1), Color(0.333333, 0.0509804, 0.521569, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_ohj6l"]
+[sub_resource type="Animation" id="Animation_k4a78"]
 resource_name = "FireMissile"
 length = 0.5
 step = 0.01
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("CharacterBody/Torso/RightLauncher/LaunchEffect:visible")
+tracks/0/path = NodePath("CharacterBody/Waist/Torso/RightLauncher/LaunchEffect:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -92,7 +92,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("CharacterBody/Torso/RightLauncher/LaunchEffect:modulate")
+tracks/1/path = NodePath("CharacterBody/Waist/Torso/RightLauncher/LaunchEffect:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -116,14 +116,14 @@ tracks/2/keys = {
 }]
 }
 
-[sub_resource type="Animation" id="Animation_85oqp"]
+[sub_resource type="Animation" id="Animation_i841e"]
 resource_name = "FireRightMissilePrep"
 length = 0.1
 step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("CharacterBody/Torso/RightLauncher:color")
+tracks/0/path = NodePath("CharacterBody/Waist/Torso/RightLauncher:color")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -133,13 +133,13 @@ tracks/0/keys = {
 "values": [Color(0.333333, 0.0509804, 0.521569, 1), Color(0.486275, 0.0745098, 0.760784, 1), Color(0.333333, 0.0509804, 0.521569, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_fttdl"]
+[sub_resource type="Animation" id="Animation_3g8q7"]
 resource_name = "Empty"
 length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("CharacterBody/Torso/RightLauncher:color")
+tracks/0/path = NodePath("CharacterBody/Waist/Torso/RightLauncher:color")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -149,16 +149,16 @@ tracks/0/keys = {
 "values": [Color(0.333333, 0.0509804, 0.521569, 1), Color(0.129412, 0.0196078, 0.2, 1), Color(0.333333, 0.0509804, 0.521569, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_um4w8"]
+[sub_resource type="Animation" id="Animation_03llv"]
 resource_name = "Nothing"
 
-[sub_resource type="Animation" id="Animation_el12r"]
+[sub_resource type="Animation" id="Animation_m3ckl"]
 resource_name = "Punch"
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("CharacterBody/Torso/RightArm:position")
+tracks/0/path = NodePath("CharacterBody/Waist/Torso/RightArm:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -168,7 +168,7 @@ tracks/0/keys = {
 "values": [Vector2(2.5, 14), Vector2(18.5, 14), Vector2(2.5, 14)]
 }
 
-[sub_resource type="Animation" id="Animation_xq16i"]
+[sub_resource type="Animation" id="Animation_yk7vu"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -197,7 +197,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("CharacterBody/Torso/RightArm:position")
+tracks/2/path = NodePath("CharacterBody/Waist/Torso/RightArm:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -209,7 +209,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("CharacterBody/Torso/RightLauncher/LaunchEffect:visible")
+tracks/3/path = NodePath("CharacterBody/Waist/Torso/RightLauncher/LaunchEffect:visible")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -221,7 +221,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("CharacterBody/Torso/RightLauncher/LaunchEffect:modulate")
+tracks/4/path = NodePath("CharacterBody/Waist/Torso/RightLauncher/LaunchEffect:modulate")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -233,7 +233,7 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("CharacterBody/Torso/RightLauncher:color")
+tracks/5/path = NodePath("CharacterBody/Waist/Torso/RightLauncher:color")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -245,7 +245,7 @@ tracks/5/keys = {
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("CharacterBody/Torso:rotation")
+tracks/6/path = NodePath("CharacterBody/Waist/Torso:rotation")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
@@ -279,14 +279,14 @@ tracks/8/keys = {
 "values": [0.0]
 }
 
-[sub_resource type="Animation" id="Animation_3chog"]
+[sub_resource type="Animation" id="Animation_tl3k2"]
 resource_name = "Spinny"
 length = 2.0
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("CharacterBody/Torso:rotation")
+tracks/0/path = NodePath("CharacterBody/Waist/Torso:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -296,7 +296,7 @@ tracks/0/keys = {
 "values": [0.0, 6.28319]
 }
 
-[sub_resource type="Animation" id="Animation_txkmj"]
+[sub_resource type="Animation" id="Animation_34a5d"]
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -339,7 +339,7 @@ tracks/2/keys = {
 "values": [Vector2(0, 12), Vector2(-15, 12), Vector2(0, 12)]
 }
 
-[sub_resource type="Animation" id="Animation_7fe5g"]
+[sub_resource type="Animation" id="Animation_dw4km"]
 resource_name = "StepRight"
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -383,7 +383,7 @@ tracks/2/keys = {
 "values": [Vector2(0, -12), Vector2(-15, -12), Vector2(0, -12)]
 }
 
-[sub_resource type="Animation" id="Animation_a77j6"]
+[sub_resource type="Animation" id="Animation_ppypn"]
 resource_name = "TurnNeutral"
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -398,7 +398,7 @@ tracks/0/keys = {
 "values": [0.0]
 }
 
-[sub_resource type="Animation" id="Animation_e4n75"]
+[sub_resource type="Animation" id="Animation_b3ibv"]
 resource_name = "TurnWaistLeft"
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -413,7 +413,7 @@ tracks/0/keys = {
 "values": [0.0, -0.785398]
 }
 
-[sub_resource type="Animation" id="Animation_dab3y"]
+[sub_resource type="Animation" id="Animation_w73kb"]
 resource_name = "TurnWaistRight"
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -428,7 +428,7 @@ tracks/0/keys = {
 "values": [0.0, 0.785398]
 }
 
-[sub_resource type="Animation" id="Animation_lsa3a"]
+[sub_resource type="Animation" id="Animation_8tx1b"]
 resource_name = "Walk"
 length = 2.0
 loop_mode = 1
@@ -476,20 +476,20 @@ tracks/2/keys = {
 
 [resource]
 _data = {
-"FireLeftMissile": SubResource("Animation_6ysnm"),
-"FireLeftMissilePrep": SubResource("Animation_ge4ci"),
-"FireLeftMissileRecover": SubResource("Animation_owt0c"),
-"FireRightMissile": SubResource("Animation_ohj6l"),
-"FireRightMissilePrep": SubResource("Animation_85oqp"),
-"FireRightMissileRecover": SubResource("Animation_fttdl"),
-"Nothing": SubResource("Animation_um4w8"),
-"Punch": SubResource("Animation_el12r"),
-"RESET": SubResource("Animation_xq16i"),
-"Spinny": SubResource("Animation_3chog"),
-"StepLeft": SubResource("Animation_txkmj"),
-"StepRight": SubResource("Animation_7fe5g"),
-"TurnNeutral": SubResource("Animation_a77j6"),
-"TurnWaistLeft": SubResource("Animation_e4n75"),
-"TurnWaistRight": SubResource("Animation_dab3y"),
-"Walk": SubResource("Animation_lsa3a")
+"FireLeftMissile": SubResource("Animation_8clj0"),
+"FireLeftMissilePrep": SubResource("Animation_rtwv0"),
+"FireLeftMissileRecover": SubResource("Animation_wvqh6"),
+"FireRightMissile": SubResource("Animation_k4a78"),
+"FireRightMissilePrep": SubResource("Animation_i841e"),
+"FireRightMissileRecover": SubResource("Animation_3g8q7"),
+"Nothing": SubResource("Animation_03llv"),
+"Punch": SubResource("Animation_m3ckl"),
+"RESET": SubResource("Animation_yk7vu"),
+"Spinny": SubResource("Animation_tl3k2"),
+"StepLeft": SubResource("Animation_34a5d"),
+"StepRight": SubResource("Animation_dw4km"),
+"TurnNeutral": SubResource("Animation_ppypn"),
+"TurnWaistLeft": SubResource("Animation_b3ibv"),
+"TurnWaistRight": SubResource("Animation_w73kb"),
+"Walk": SubResource("Animation_8tx1b")
 }

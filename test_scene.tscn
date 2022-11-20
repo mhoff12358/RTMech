@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://c6548x0xpwqos"]
 
-[ext_resource type="PackedScene" uid="uid://b4vrxq55566ax" path="res://environment.tscn" id="1_0xa2k"]
+[ext_resource type="PackedScene" uid="uid://f636vr2cskk3" path="res://environment.tscn" id="1_0xa2k"]
 [ext_resource type="Script" path="res://UI/Throttle.gd" id="2_cgolh"]
 [ext_resource type="LabelSettings" uid="uid://b5xxulqk4ht0g" path="res://UI/throttle_label_settings.tres" id="3_lr338"]
 

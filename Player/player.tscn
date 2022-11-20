@@ -199,16 +199,12 @@ animation = &"TurnWaistLeft"
 animation = &"TurnWaistRight"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_gxpm4"]
-switch_mode = 2
-auto_advance = true
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_dfner"]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_gb8wt"]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_7xqwj"]
-switch_mode = 2
-auto_advance = true
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_m7lob"]
 
@@ -220,9 +216,10 @@ states/TurnWaistLeft/position = Vector2(595.885, 31.3333)
 states/TurnWaistRight/node = SubResource("AnimationNodeAnimation_0atak")
 states/TurnWaistRight/position = Vector2(596.667, 180)
 transitions = ["TurnWaistLeft", "TurnNeutral", SubResource("AnimationNodeStateMachineTransition_gxpm4"), "Start", "TurnNeutral", SubResource("AnimationNodeStateMachineTransition_dfner"), "TurnNeutral", "TurnWaistRight", SubResource("AnimationNodeStateMachineTransition_gb8wt"), "TurnWaistRight", "TurnNeutral", SubResource("AnimationNodeStateMachineTransition_7xqwj"), "TurnNeutral", "TurnWaistLeft", SubResource("AnimationNodeStateMachineTransition_m7lob")]
+graph_offset = Vector2(-21, -264)
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_lnxq1"]
-graph_offset = Vector2(-341.333, -57.3333)
+graph_offset = Vector2(-469.333, -182.667)
 nodes/AddAttack/node = SubResource("AnimationNodeAdd2_n7s02")
 nodes/AddAttack/position = Vector2(480, 133.333)
 nodes/AddTurnWaist/node = SubResource("AnimationNodeAdd2_uqhym")
@@ -324,52 +321,52 @@ polygon = PackedVector2Array(-2.82, -2.82, 2.82, -2.82, 2.82, 2.82, -2.82, 2.82)
 script = ExtResource("2_ql4do")
 shape = SubResource("RectangleShape2D_xsspf")
 
-[node name="Torso" type="Node2D" parent="CharacterBody"]
+[node name="Torso" type="Node2D" parent="CharacterBody/Waist"]
 
-[node name="DINodeRegistration" type="DINodeRegistration" parent="CharacterBody/Torso"]
+[node name="DINodeRegistration" type="DINodeRegistration" parent="CharacterBody/Waist/Torso"]
 registration_id = "Torso"
 
-[node name="Body" type="Polygon2D" parent="CharacterBody/Torso"]
+[node name="Body" type="Polygon2D" parent="CharacterBody/Waist/Torso"]
 color = Color(0.729412, 0.145098, 0, 1)
 polygon = PackedVector2Array(-7.5, -7.5, 7.5, -7.5, 7.5, 7.5, -7.5, 7.5)
 script = ExtResource("2_ql4do")
 shape = SubResource("RectangleShape2D_drnr5")
 
-[node name="Front" type="Polygon2D" parent="CharacterBody/Torso"]
+[node name="Front" type="Polygon2D" parent="CharacterBody/Waist/Torso"]
 position = Vector2(7.5, 0)
 color = Color(0.727495, 0.145013, 0, 1)
 polygon = PackedVector2Array(7.5, 0, 6.9291, 2.87013, 5.3033, 5.3033, 2.87013, 6.9291, 4.59227e-16, 7.5, -2.87013, 6.9291, -5.3033, 5.3033, -6.9291, 2.87013, -7.5, 9.18455e-16, -6.9291, -2.87013, -5.3033, -5.3033, -2.87013, -6.9291, -1.37768e-15, -7.5, 2.87013, -6.9291, 5.3033, -5.3033, 6.9291, -2.87013, 7.5, 0)
 script = ExtResource("2_ql4do")
 shape = SubResource("CircleShape2D_8umm0")
 
-[node name="Cockpit" type="Polygon2D" parent="CharacterBody/Torso"]
+[node name="Cockpit" type="Polygon2D" parent="CharacterBody/Waist/Torso"]
 position = Vector2(12, 0)
 color = Color(0.278431, 0.658824, 0, 1)
 polygon = PackedVector2Array(-1.5, -3.5, 1.5, -3.5, 1.5, 3.5, -1.5, 3.5)
 script = ExtResource("2_ql4do")
 shape = SubResource("RectangleShape2D_bbt1r")
 
-[node name="RightArm" type="Node2D" parent="CharacterBody/Torso"]
+[node name="RightArm" type="Node2D" parent="CharacterBody/Waist/Torso"]
 position = Vector2(2.5, 14)
 
-[node name="Hand" type="Polygon2D" parent="CharacterBody/Torso/RightArm"]
+[node name="Hand" type="Polygon2D" parent="CharacterBody/Waist/Torso/RightArm"]
 color = Color(0.721569, 0.670588, 0.137255, 1)
 polygon = PackedVector2Array(3, 0, 2.77164, 1.14805, 2.12132, 2.12132, 1.14805, 2.77164, 1.83691e-16, 3, -1.14805, 2.77164, -2.12132, 2.12132, -2.77164, 1.14805, -3, 3.67382e-16, -2.77164, -1.14805, -2.12132, -2.12132, -1.14805, -2.77164, -5.51073e-16, -3, 1.14805, -2.77164, 2.12132, -2.12132, 2.77164, -1.14805, 3, 0)
 script = ExtResource("2_ql4do")
 shape = SubResource("CircleShape2D_b5t5n")
 
-[node name="RightLauncher" type="Polygon2D" parent="CharacterBody/Torso"]
+[node name="RightLauncher" type="Polygon2D" parent="CharacterBody/Waist/Torso"]
 position = Vector2(-3, 7)
 color = Color(0.333333, 0.0509804, 0.521569, 1)
 polygon = PackedVector2Array(-3.75, -5, 3.75, -5, 3.75, 5, -3.75, 5)
 script = ExtResource("2_ql4do")
 shape = SubResource("RectangleShape2D_7girx")
 
-[node name="DINodeRegistration" type="DINodeRegistration" parent="CharacterBody/Torso/RightLauncher"]
+[node name="DINodeRegistration" type="DINodeRegistration" parent="CharacterBody/Waist/Torso/RightLauncher"]
 registration_id = "RightLauncher"
 registration_type = "Node2D"
 
-[node name="LaunchEffect" type="Sprite2D" parent="CharacterBody/Torso/RightLauncher"]
+[node name="LaunchEffect" type="Sprite2D" parent="CharacterBody/Waist/Torso/RightLauncher"]
 visible = false
 position = Vector2(-7, 3)
 rotation = 1.5708
@@ -377,18 +374,18 @@ scale = Vector2(0.1, 0.1)
 texture = ExtResource("3_thgch")
 flip_h = true
 
-[node name="LeftLauncher" type="Polygon2D" parent="CharacterBody/Torso"]
+[node name="LeftLauncher" type="Polygon2D" parent="CharacterBody/Waist/Torso"]
 position = Vector2(-3, -7)
 color = Color(0.333333, 0.0509804, 0.521569, 1)
 polygon = PackedVector2Array(-3.75, -5, 3.75, -5, 3.75, 5, -3.75, 5)
 script = ExtResource("2_ql4do")
 shape = SubResource("RectangleShape2D_7girx")
 
-[node name="DINodeRegistration" type="DINodeRegistration" parent="CharacterBody/Torso/LeftLauncher"]
+[node name="DINodeRegistration" type="DINodeRegistration" parent="CharacterBody/Waist/Torso/LeftLauncher"]
 registration_id = "LeftLauncher"
 registration_type = "Node2D"
 
-[node name="LaunchEffect" type="Sprite2D" parent="CharacterBody/Torso/LeftLauncher"]
+[node name="LaunchEffect" type="Sprite2D" parent="CharacterBody/Waist/Torso/LeftLauncher"]
 modulate = Color(1, 1, 1, 0)
 position = Vector2(-7, -3)
 rotation = 1.5708
@@ -398,6 +395,7 @@ texture = ExtResource("3_thgch")
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource("AnimationNodeBlendTree_lnxq1")
 anim_player = NodePath("../AnimationPlayer")
+process_callback = 2
 parameters/AddAttack/add_amount = 1.0
 parameters/AddTurnWaist/add_amount = 0.5
 parameters/AddWalk/add_amount = 1.0

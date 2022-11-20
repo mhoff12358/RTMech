@@ -89,6 +89,7 @@ func fire_missile(right_launcher: bool):
     m_missiles.fire_missile(m_fire_missiles_playback, m_game_content, k_missile_scene, missile_trans)
 
 func _process(delta: float):
+
     if first:
         print("Setting missiles in player")
         first = false
@@ -98,6 +99,7 @@ func _process(delta: float):
         m_attack_playback.travel("FireMissiles")
 
     m_walking_state.internal_process(delta)
+    m_animation_tree.advance(delta)
 
 #    var curr_node = m_walk_playback.get_current_node()
 #    if Input.is_action_pressed("WalkDirectionUp"):
